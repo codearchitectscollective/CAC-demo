@@ -1,0 +1,706 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <!-- google fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <!-- end google fonts -->
+  <link rel="icon" type="image" href="{% static "img/titleicon.png"%}">
+  <link rel="stylesheet" href="{% static "css/style.css"%}">
+  <title>CAC / Setting</title>
+</head>
+
+<body>
+  <header class="f-header position-relative js-f-header">
+    
+
+    <!-- mobile navbar -->
+    <div class="f-header__mobile-content container max-width-lg">
+      <a href="home" class="nav f-header__logo"> 
+        <img class="lo" src="{% static "img/navlogo.jpg"%}" alt="CAC LOGO">                 
+      </a> 
+
+      <button style="color: white;" class="reset anim-menu-btn js-anim-menu-btn f-header__nav-control js-tab-focus" aria-label="Toggle menu">
+        <i class="anim-menu-btn__icon anim-menu-btn__icon--close" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div style="background-color: #b81d18; " class="f-header__nav" role="navigation">
+      <div class="f-header__nav-grid justify-between@md container max-width-lg">
+    
+
+        <div class="f-header__nav-logo-wrapper flex-grow flex-basis-0">
+          <img class="lo" src="{% static "img/navlogo.jpg"%}" alt="CAC LOGO">&nbsp;
+          <a href="home" class="nav f-header__logo">
+            <h2 class="nav">CAC</h2>
+          </a>
+        </div>
+
+
+        <ul dir="auto" class="f-header__list flex-grow flex-basis-0 justify-center@md">
+
+          <!-- <li class="f-header__item">
+            <a href="blogmenu" class="nav f-header__link">
+              <span>Blog</span>
+              <svg class="f-header__dropdown-icon icon" aria-hidden="true" viewBox="0 0 12 12"><path d="M9.943,4.269A.5.5,0,0,0,9.5,4h-7a.5.5,0,0,0-.41.787l3.5,5a.5.5,0,0,0,.82,0l3.5-5A.5.5,0,0,0,9.943,4.269Z"/></svg>
+            </a>
+  
+            <ul class="f-header__dropdown">
+              <li><a href="#0" class="f-header__dropdown-link">Python</a></li>
+              <li><a href="#0" class="f-header__dropdown-link">Javascript</a></li>
+              <li><a href="#0" class="f-header__dropdown-link">FrontEnd</a></li>
+              <li><a href="#0" class="f-header__dropdown-link">BackEnd</a></li>
+            </ul>
+          </li> -->
+
+          <li class="f-header__item"><a href="blogmenu" class="nav f-header__link">Blog</a></li>
+          <li class="f-header__item"><a href="projects" class="nav f-header__link">Projects</a></li>
+          <li class="f-header__item"><a href="timeline" class="nav f-header__link" aria-current="page">CAC Timeline</a>
+          </li>
+          <li class="f-header__item"><a href="purchase" class="nav f-header__link">Purchase</a></li>
+          <li class="f-header__item"><a href="contact" class="nav f-header__link">Contact</a></li>
+
+        
+
+          <li class="f-header__item">
+            <a style="text-decoration: none;" href="https://www.linkedin.com/in/code-architects-collective-1b40982a4/"
+              class="f-header__link f-header__link--icon" aria-label="Follow us on linkedin">
+              <svg class="icon"><i id="x" class="nav fa fa-linkedin-square"></i></svg>
+            </a>
+          </li>
+
+          <li class="f-header__item">
+            <a style="text-decoration: none;" href="https://github.com/" class="f-header__link f-header__link--icon"
+              aria-label="Follow us on github">
+              <svg class="icon"><i id="x" class="nav fa fa-github-square"></i></svg>
+            </a>
+          </li>
+
+          <!-- <li class="f-header__item">
+            <a style="text-decoration: none;" href="https://www.youtube.com/"
+              class="f-header__link f-header__link--icon" aria-label="Follow us on youtube">
+              <svg class="icon"><i id="x" class="nav fa fa fa-youtube"></i></svg>
+            </a>
+          </li> -->
+
+          <li class="f-header__item">
+            <a style="text-decoration: none;" href="arcade" class="f-header__link f-header__link--icon"
+              aria-label="Follow us on arcade">
+              <svg class="icon"><i id="x" class="nav fa fa fa-gamepad"></i></svg>
+            </a>
+          </li>
+
+          <li class="f-header__item">
+            <a style="text-decoration: none;" href="profile" class="f-header__link f-header__link--icon"
+              aria-label="Follow us on arcade">
+              <svg class="icon"><i id="x" class="nav fa fa fa-gear"></i></svg>
+            </a>
+          </li>
+
+                     <!-- {% if user.is_authenticated %} -->
+        
+        <a id="xmyBtn" style="text-decoration: none;" href="#" class="f-header__link f-header__link--icon" aria-label="login">
+          <svg class="icon"><i id="x" class="nav fa fa fa-sign-in">&nbsp;logout</i></svg>
+        <!-- {% else %} -->
+        </a>
+
+      
+        <a id="xmyBtn" style="text-decoration: none;" href="#" class="f-header__link f-header__link--icon" aria-label="login">
+          <svg class="icon"><i id="x" class="nav fa fa fa-sign-in">&nbsp;login</i></svg>
+        <!-- {% endif%} -->
+        </a>
+        </ul>
+
+
+
+       
+      </div>
+    </div>
+              <!-- The Modal -->
+              <div id="xmyModal" class="xmodal">
+
+                <!-- Modal content -->
+                <div class="xmodal-content">
+                  <div class="xmodal-header">
+                    <span class="xclose">&times;</span>
+                    <h2 class="smallformtitle">Quick Login</h2>
+                  </div>
+                  <div class="xmodal-body">
+
+                    <div class="smallformcontainer">
+                        <form class="form">
+                          <input type="email" class="form_input" placeholder="Your E-Mail Address"/>
+                          <button type="submit" class="login_btn btn--primary">Login</button>
+                          <a href="signup">
+                            <button type="button" class="login_btn btn--primary">Register</button><br>
+                          </a>
+                          <input type="password" class="form_input" placeholder="Your Password"/>
+                          <button type="button" class="login_btn btn--google">Continue with google<i class="fa fa-google fa-fw">                          </i></button>
+
+                        </form>
+                    </div>
+
+                  </div>
+                  <!-- <div class="xmodal-footer">
+                    <h3>Modal Footer</h3>
+                  </div> -->
+                </div>
+              
+              </div>
+  </header>
+
+
+
+  <!-- Sidenav -->
+  <div style="background-color: #b81d18;" class="sidenav">
+    <div class="profile">
+
+      <div style="color: white;" class="name">
+        MENU
+      </div>
+      <span></span>
+      <div style="color: white;" class="job">
+        Admin / User
+      </div>
+    </div>
+
+    <div class="sidenav-url">
+      <div class="url">
+        <a href="./profile">Profile</a>
+        <hr align="center">
+      </div>
+      <div class="url">
+        <a href="./settings" class="active">Setting</a>
+        <hr align="center">
+      </div>
+      <div class="url">
+        <a href="./tools">Tools</a>
+        <hr align="center">
+      </div>
+    </div>
+  </div>
+  <!-- End -->
+
+  <!-- Main -->
+  <div class="main">
+    <h2>Settings</h2>
+    <div class="card">
+      <div class="card-body">
+        <table>
+            <tr>
+              <td>Dark Mode</td>
+              <td>
+                <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+              <td>Language</td>
+              <td>
+                <div class="dropdown">
+                  <button class="dropbtn">English</button>
+                  <div class="dropdown-content">
+                    <a href="#">English</a>
+                    <a href="#">Persian</a>
+                  </div>
+              </div>
+            </td>
+            </tr>
+
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- End -->
+</body>
+<script>
+  // Get the modal
+  var modal = document.getElementById("xmyModal");
+  
+  // Get the button that opens the modal
+  var btn = document.getElementById("xmyBtn");
+  
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("xclose")[0];
+  
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+  
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+<style>
+    /* The Modal (background) */
+.xmodal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.xmodal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 44%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.xclose {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.xclose:hover,
+.xclose:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.xmodal-header {
+  padding: 2px 16px;
+  background-color: #b81d18;
+  color: white;
+}
+
+.smallformtitle {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.xmodal-body {padding: 2px 16px;}
+
+.xmodal-footer {
+  padding: 2px 16px;
+  background-color: #b81d18;
+  color: white;
+}
+</style>
+<style>
+  /* Import Font Dancing Script */
+@import url(https://fonts.googleapis.com/css?family=Dancing+Script);
+
+* {
+margin: 0;
+}
+
+body {
+  background-color: whitesmoke;
+font-family: Arial;
+overflow: hidden;
+}
+
+
+
+.title {
+font-family: "Dancing Script", cursive;
+padding-top: 15px;
+position: absolute;
+left: 45%;
+}
+
+.navbar-top ul {
+float: right;
+list-style-type: none;
+margin: 0;
+overflow: hidden;
+padding: 18px 50px 0 40px;
+}
+
+.navbar-top ul li {
+float: left;
+}
+
+.navbar-top ul li a {
+color: #333;
+padding: 14px 16px;
+text-align: center;
+text-decoration: none;
+}
+
+.icon-count {
+background-color: #ff0000;
+color: #fff;
+float: right;
+font-size: 11px;
+left: -25px;
+padding: 2px;
+position: relative;
+}
+
+/* End */
+
+/* Sidenav */
+.sidenav {
+background-color: #b81d18;;
+color: #333;
+border-bottom-right-radius: 25px;
+height: 86%;
+left: 0;
+overflow-x: hidden;
+padding-top: 20px;
+position: absolute;
+top: 70px;
+width: 250px;
+}
+
+.profile {
+margin-bottom: 20px;
+margin-top: -12px;
+text-align: center;
+}
+
+.name {
+font-size: 20px;
+font-weight: bold;
+padding-top: 20px;
+}
+
+.job {
+font-size: 16px;
+font-weight: bold;
+padding-top: 10px;
+}
+
+.url,
+hr {
+text-align: center;
+}
+
+.url hr {
+margin-left: 20%;
+width: 60%;
+}
+
+.url a {
+background-color: black;
+border-radius: 28px;
+color: white;
+display: block;
+font-size: 20px;
+margin: 10px 0;
+padding: 6px 8px;
+text-decoration: none;
+margin-left: 14%;
+width: 65%;
+}
+
+.url a:hover,
+.url .active {
+background-color: #e8f5ff;
+border-radius: 28px;
+color: #000;
+margin-left: 14%;
+width: 65%;
+}
+
+/* End */
+
+/* Main */
+.main {
+margin-top: 2%;
+margin-left: 29%;
+font-size: 28px;
+width: 40%;
+}
+
+.main h2 {
+color: #333;
+font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+font-size: 24px;
+margin-bottom: 10px;
+}
+
+.main .card {
+background-color: #fff;
+border-radius: 18px;
+box-shadow: 1px 1px 8px 0 grey;
+height: auto;
+margin-bottom: 20px;
+padding: 20px 0 20px 50px;
+}
+
+.main .card table {
+border: none;
+font-size: 16px;
+height: 270px;
+width: 80%;
+}
+
+.Tools {
+text-align: center;
+width: 90%;
+}
+
+.Tools a {
+margin: 0 10px;
+}
+
+.Tools a:hover {
+ color: #333;
+}
+
+.fa-camera:hover {
+color: red !important;
+}
+
+.fa-file-text:hover {
+color: rgb(219, 0, 219) !important;
+}
+
+.fa-wifi:hover {
+color: royalblue !important;
+}
+
+.fa-podcast:hover {
+color: orangered !important;
+}
+
+.fa-calculator:hover {
+color: rgb(0, 235, 0) !important;
+}
+
+/* End */
+
+</style>
+
+<style>
+  :root {
+    color: #9c9c9c;
+    font: 1rem "PT Sans", sans-serif;
+  }
+  
+  a {
+    color: inherit;
+  }
+  a:hover {
+    color: #7f8ff4;
+  }
+  
+  .smallformcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .uppercase {
+    text-transform: uppercase;
+  }
+  
+  .login_btn {
+    display: inline-block;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    transition: all 200ms ease-in;
+    cursor: pointer;
+  }
+  .btn--primary {
+    background: #4a62ff;
+    color: #fff;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    width: 146px;
+    padding: 12px 36px;
+  }
+  .btn--primary:hover {
+    background: #6c7ff2;
+  }
+  .btn--primary:active {
+    background: #4a62ff;
+    box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn--google {
+    background: red;
+    color: #fff;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    padding: 12px 36px;
+  }
+  .btn--google:hover {
+    background: rgba(255, 0, 0, 0.738);
+  }
+  .btn--google:active {
+    background: red;
+    box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn--inside {
+    margin-left: -96px;
+  }
+  
+  .form_input {
+    width: 300px;
+    background: #fff;
+    color: #484848;
+    font: inherit;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+    border: 2px solid;
+    outline: 0;
+    padding: 22px 18px;
+    margin: 6px;
+    height: 53px;
+  }
+</style>
+
+<style>
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  </style>
+  <!-- dropdown -->
+  <style>
+    .dropbtn {
+      padding: 16px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown-content a:hover {background-color: #f1f1f1}
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .dropdown:hover .dropbtn {
+      background-color: #2196F3;
+    }
+    </style>
+</html>
