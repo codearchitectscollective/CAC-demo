@@ -166,7 +166,7 @@
   <!-- Sidenav -->
   <div style="background-color: #b81d18;" class="sidenav">
     <div class="profile">
-
+      <img src="{% static "img/avatar.png"%}" alt="" width="100" height="100">
       <div style="color: white;" class="name">
         MENU
       </div>
@@ -177,18 +177,27 @@
     </div>
 
     <div class="sidenav-url">
+      
       <div class="url">
         <a href="./profile" class="active">Profile</a>
         <hr align="center">
       </div>
-      <div class="url">
-        <a href="./settings">Setting</a>
-        <hr align="center">
-      </div>
+
       <div class="url">
         <a href="./tools">Tools</a>
         <hr align="center">
       </div>
+
+      <div class="url">
+        <a href="./password">Password</a>
+        <hr align="center">
+      </div>
+
+      <div class="url">
+        <a href="./settings">Setting</a>
+        <hr align="center">
+      </div>
+
     </div>
   </div>
   <!-- End -->
@@ -201,24 +210,19 @@
         <table>
           <tbody>
             <tr>
-              <td>Name</td>
+              <td>Username</td>
               <td>:</td>
-              <td>Mamad</td>
+              <td>Reza_Mns</td>
             </tr>
             <tr>
               <td>Email</td>
               <td>:</td>
-              <td>Mamad@gmail.com</td>
+              <td>rezamns@gmail.com</td>
             </tr>
             <tr>
-              <td>Address</td>
+              <td>City</td>
               <td>:</td>
-              <td>Teh, Narmak</td>
-            </tr>
-            <tr>
-              <td>Hobbies</td>
-              <td>:</td>
-              <td>Jerking Around</td>
+              <td>Tehran</td>
             </tr>
             <tr>
               <td>Job</td>
@@ -226,9 +230,22 @@
               <td>Fuck Cop</td>
             </tr>
             <tr>
-              <td>Skill</td>
+              <td>Website</td>
               <td>:</td>
-              <td>Prostitute</td>
+              <td>www.pornhub.ir</td>
+            </tr>
+            <tr>
+              <td>Forget your password?</td>
+              <td>:</td>
+              <td>
+                <a href="forgetpass" class="animated-button">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  Reset
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -238,6 +255,159 @@
   </div>
   <!-- End -->
 </body>
+<style>
+
+  .animated-button {
+    background: linear-gradient(-30deg, #3d0b0b 50%, #2b0808 50%);
+    padding: 20px 40px;
+    margin: 12px;
+    display: inline-block;
+    -webkit-transform: translate(0%, 0%);
+    transform: translate(0%, 0%);
+    overflow: hidden;
+    color: #f7d4d4;
+    font-size: 20px;
+    letter-spacing: 2.5px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    -webkit-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  }
+  
+  .animated-button::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #ad8585;
+    opacity: 0;
+    -webkit-transition: 0.2s opacity ease-in-out;
+    transition: 0.2s opacity ease-in-out;
+  }
+  
+  .animated-button:hover::before {
+    opacity: 0.2;
+  }
+  
+  .animated-button span {
+    position: absolute;
+  }
+  
+  .animated-button span:nth-child(1) {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: -webkit-gradient(
+      linear,
+      right top,
+      left top,
+      from(rgba(43, 8, 8, 0)),
+      to(#d92626)
+    );
+    background: linear-gradient(to left, rgba(43, 8, 8, 0), #d92626);
+    -webkit-animation: 2s animateTop linear infinite;
+    animation: 2s animateTop linear infinite;
+  }
+  
+  @keyframes animateTop {
+    0% {
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+    100% {
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+  }
+  
+  .animated-button span:nth-child(2) {
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 2px;
+    background: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      from(rgba(43, 8, 8, 0)),
+      to(#d92626)
+    );
+    background: linear-gradient(to top, rgba(43, 8, 8, 0), #d92626);
+    -webkit-animation: 2s animateRight linear -1s infinite;
+    animation: 2s animateRight linear -1s infinite;
+  }
+  
+  @keyframes animateRight {
+    0% {
+      -webkit-transform: translateY(100%);
+      transform: translateY(100%);
+    }
+    100% {
+      -webkit-transform: translateY(-100%);
+      transform: translateY(-100%);
+    }
+  }
+  
+  .animated-button span:nth-child(3) {
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(rgba(43, 8, 8, 0)),
+      to(#d92626)
+    );
+    background: linear-gradient(to right, rgba(43, 8, 8, 0), #d92626);
+    -webkit-animation: 2s animateBottom linear infinite;
+    animation: 2s animateBottom linear infinite;
+  }
+  
+  @keyframes animateBottom {
+    0% {
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+    100% {
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+  }
+  
+  .animated-button span:nth-child(4) {
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 2px;
+    background: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(rgba(43, 8, 8, 0)),
+      to(#d92626)
+    );
+    background: linear-gradient(to bottom, rgba(43, 8, 8, 0), #d92626);
+    -webkit-animation: 2s animateLeft linear -1s infinite;
+    animation: 2s animateLeft linear -1s infinite;
+  }
+  
+  @keyframes animateLeft {
+    0% {
+      -webkit-transform: translateY(-100%);
+      transform: translateY(-100%);
+    }
+    100% {
+      -webkit-transform: translateY(100%);
+      transform: translateY(100%);
+    }
+  } 
+</style>
 <script>
   // Get the modal
   var modal = document.getElementById("xmyModal");

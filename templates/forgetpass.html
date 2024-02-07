@@ -20,7 +20,7 @@
   <title>CAC / Reset Password</title>
 </head>
 
-<body style="background-color: whitesmoke;">
+<body data-theme="dark">
 
   <section class="position-relative z-index-1 padding-y-xl">
     <div class="container max-width-sm position-relative z-index-2" style="background-color: white; box-shadow: 20px 20px 15px rgba(0, 0, 0, 0.616); border-radius: 10px;">
@@ -336,42 +336,11 @@
         if (re.test(input.value.trim())) {
           showSucces(input);
           location.replace("verification")
+        } else if (input.value.trim() === "") {
+          showError(input, "Email is empty. please enter your email address.");
         } else {
-          showError(input, "Error: Email is not invalid");
+          showError(input, "Email is not valid. please enter a valid email address");
         }
-      }
-    
-      //checkRequired fields
-      function checkRequired(inputArr) {
-        inputArr.forEach(function (input) {
-          if (input.value.trim() === "") {
-            showError(input, `Error: ${getFieldName(input)} is required`);
-          } else {
-            showSucces(input);
-          }
-        });
-      }
-    
-      //check input Length
-      function checkLength(input, min, max) {
-        if (input.value.length < min) {
-          showError(
-            input,
-            `Error: ${getFieldName(input)} must be at least ${min} characters`
-          );
-        } else if (input.value.length > max) {
-          showError(
-            input,
-            `${getFieldName(input)} must be les than ${max} characters`
-          );
-        } else {
-          showSucces(input);
-        }
-      }
-    
-      //get FieldName
-      function getFieldName(input) {
-        return input.id.charAt(0).toUpperCase() + input.id.slice(1);
       }
     
     
@@ -379,7 +348,6 @@
       form.addEventListener("submit", function (e) {
         e.preventDefault();
     
-        checkRequired([email]);
         checkEmail(email);
       });
   </script>

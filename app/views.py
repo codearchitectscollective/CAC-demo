@@ -24,6 +24,8 @@ def tetris(request):
     return render(request, 'tetris.html')
 def snake(request): 
     return render(request, 'snake.html')
+def password(request): 
+    return render(request, 'password.html')
 def pong(request): 
     return render(request, 'pong.html')
 def signup(request): 
@@ -56,6 +58,8 @@ def resetpassword(request):
     return render(request, 'resetpassword.html')
 def tools(request): 
     return render(request, 'tools.html')
+def passwordgenerator(request): 
+    return render(request, 'passwordgenerator.html')
 def settings(request): 
     return render(request, 'settings.html')
 def home(request):
