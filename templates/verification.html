@@ -20,7 +20,7 @@
   <title>CAC / Verification</title>
 </head>
 
-<body style="background-color: whitesmoke;">
+<body data-theme="dark">
 
   <section class="position-relative z-index-1 padding-y-xl">
     <div class="container max-width-sm position-relative z-index-2" style="background-color: white; box-shadow: 20px 20px 15px rgba(0, 0, 0, 0.616); border-radius: 10px;">
@@ -36,17 +36,15 @@
 
           <div class="rezform-control">
             <label for="email">Verification Code</label>
-            <input type="text" id="rezemail" placeholder="Enter verification code">
+            <input type="number" id="rezemail" placeholder="Enter verification code">
             <small class="padding-xxs radius-md text-xs color-contrast-higher margin-top-xxs">Error Message</small>
           </div>
 
           <fieldset class="margin-bottom-xxs">                                 
             <a href="login">
-              Back to login
-            </a>
-            <p>
-              Didn't reseve any verification mail?<a href="#">resent code</a>
-            </p>          
+              <button style="width: 49.5%;" class="bzbz btn btn--primary">Back to login</button>
+            </a>   
+                <button disabled id="resendbtn" style="width: 49.5%;" class="bzbz btn btn--primary">Resend code</button>  
           </fieldset> 
           
           <button style="width: 100%;" class="bttn-dark bzbz btn btn--primary">Verify</button>
@@ -89,7 +87,32 @@
       </svg>
     </figure>
   </section> 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Select the button
+        const myButton = document.getElementById('resendbtn');
 
+        // Set the countdown duration in seconds
+        const countdownDuration = 60;
+
+        let countdown = countdownDuration;
+
+        // Enable the button after the countdown
+        function updateButton() {
+            if (countdown >= 0) {
+                myButton.textContent = `Resend code (${countdown}s)`;
+                countdown--;
+                setTimeout(updateButton, 1000); // Update every second
+            } else {
+                myButton.removeAttribute('disabled');
+                myButton.textContent = 'Resend code';
+            }
+        }
+
+        // Start the countdown
+        updateButton();
+    });
+</script>
 <!-- form inputs and validation errors -->
   <style>
       @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
@@ -302,7 +325,7 @@
 }
   </style>
     
-    <script>
+    <!-- <script>
       const form = document.getElementById("rezform");
       const email = document.getElementById("rezemail");
     
@@ -322,46 +345,15 @@
     
       //check email is valid
       function checkEmail(input) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (re.test(input.value.trim())) {
+        if (!input.value.trim() === "") {
           showSucces(input);
           location.replace("resetpassword")
-        } else {
-          showError(input, "Error: Email is not invalid");
-        }
-      }
-    
-      //checkRequired fields
-      function checkRequired(inputArr) {
-        inputArr.forEach(function (input) {
-          if (input.value.trim() === "") {
-            showError(input, `Error: ${getFieldName(input)} is required`);
-          } else {
-            showSucces(input);
-          }
-        });
-      }
-    
-      //check input Length
-      function checkLength(input, min, max) {
-        if (input.value.length < min) {
-          showError(
-            input,
-            `Error: ${getFieldName(input)} must be at least ${min} characters`
-          );
-        } else if (input.value.length > max) {
-          showError(
-            input,
-            `${getFieldName(input)} must be les than ${max} characters`
-          );
+        } else if (input.value.trim() === "") {
+          showError(input, "Input is empty. please enter your verification code.");
         } else {
           showSucces(input);
+          location.replace("resetpassword")
         }
-      }
-    
-      //get FieldName
-      function getFieldName(input) {
-        return input.id.charAt(0).toUpperCase() + input.id.slice(1);
       }
     
     
@@ -369,10 +361,9 @@
       form.addEventListener("submit", function (e) {
         e.preventDefault();
     
-        checkRequired([email]);
         checkEmail(email);
       });
-  </script>
+  </script> -->
   <script src="{% static "js/scripts.js"%}"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initGoogleMap"></script>
  
