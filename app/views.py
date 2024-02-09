@@ -76,6 +76,7 @@ def register(request):
         passwordre = request.POST['passwordre']
         
         if password == passwordre:
+            
             if User.objects.filter(email=email).exists():
                 messages.info(request, "Email Already Used")
                 return redirect('signup')
@@ -86,6 +87,8 @@ def register(request):
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
                 return redirect('login')
+        elif len(password) < 6:
+                messages.info(request, "your password must be atleast 6 characters")
         else: 
             messages.info(request, "passwords does not match")
             return redirect('register')
