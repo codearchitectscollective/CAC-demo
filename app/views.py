@@ -70,36 +70,41 @@ def home(request):
 #function for register 
 
 def register(request):
-    try:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            email = request.POST.get('email')
-            password = request.POST.get('password')
-            passwordre = request.POST.get('passwordre')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        passwordre = request.POST.get('passwordre')
         
-            if len(password) < 6 or len(passwordre) < 6:
-                messages.info(request, "Your password must be at least 6 characters.")
-                return redirect('signup')
-            
-            if password == passwordre:
-                if User.objects.filter(email=email).exists():
-                    messages.info(request, "Email Already Used")
-                    return redirect('signup')
-                elif User.objects.filter(username=username).exists():
-                    messages.info(request, "Username Already Used")
-                    return redirect('signup')
-                else:
-                    user = User.objects.create_user(username=username, email=email, password=password)
-                    user.save()
-                    return redirect('login')
-            else:
-                messages.info(request, "Passwords do not match.")
-                return redirect('signup')
-        else:
-            return render(request, 'signup.html')
-    except:
-        messages.info(request, "Please provide all needed information.")
-        return redirect('signup')
+        # Check if any of the fields are empty
+        if not (username and email and password and passwordre):
+            messages.info(request, "Please provide all needed information.")
+            return redirect('signup')
+        
+        # Check password length
+        if len(password) < 6 or len(passwordre) < 6:
+            messages.info(request, "Your password must be at least 6 characters.")
+            return redirect('signup')
+        
+        # Check if passwords match
+        if password != passwordre:
+            messages.info(request, "Passwords do not match.")
+            return redirect('signup')
+        
+        # Check for existing email and username
+        if User.objects.filter(email=email).exists():
+            messages.info(request, "Email Already Used")
+            return redirect('signup')
+        elif User.objects.filter(username=username).exists():
+            messages.info(request, "Username Already Used")
+            return redirect('signup')
+        
+        # Create user
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.save()
+        return redirect('login')
+    else:
+        return render(request, 'signup.html')
 #function for login
 
 def login(request): 
