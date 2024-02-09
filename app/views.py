@@ -73,31 +73,33 @@ def home(request):
 def register(request):
     try:
         if request.method == 'POST':
+            username = request.POST.get('username')
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+            passwordre = request.POST.get('passwordre')
         
-            username = request.POST['username']
-            email = request.POST['email']
-            password = request.POST['password']
-            passwordre = request.POST['passwordre']
-        
-            if password == passwordre:
+            if len(password) < 6 or len(passwordre) < 6:
+                messages.info(request, "Your password must be at least 6 characters.")
+                return redirect('signup')
             
+            if password == passwordre:
                 if User.objects.filter(email=email).exists():
                     messages.info(request, "Email Already Used")
                     return redirect('signup')
-                elif User.objects.filter(username = username).exists():
+                elif User.objects.filter(username=username).exists():
                     messages.info(request, "Username Already Used")
                     return redirect('signup')
                 else:
                     user = User.objects.create_user(username=username, email=email, password=password)
                     user.save()
                     return redirect('login')
-            else: 
-                messages.info(request, "passwords does not match")
-                return redirect('register')
+            else:
+                messages.info(request, "Passwords do not match.")
+                return redirect('signup')
         else:
             return render(request, 'signup.html')
     except:
-        messages.info(request, "please provide needed infromation")
+        messages.info(request, "Please provide all needed information.")
         return redirect('signup')
 #function for login
 
