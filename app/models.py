@@ -9,3 +9,5 @@ class AuthUser(models.Model):
 
     def __str__(self):
         return self.usernames
+    class Meta:
+        app_label = 'app'
