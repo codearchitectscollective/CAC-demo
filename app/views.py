@@ -71,31 +71,34 @@ def home(request):
 #function for register 
 
 def register(request):
-    if request.method == 'POST':
+    try:
+        if request.method == 'POST':
         
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        passwordre = request.POST['passwordre']
+            username = request.POST['username']
+            email = request.POST['email']
+            password = request.POST['password']
+            passwordre = request.POST['passwordre']
         
-        if password == passwordre:
+            if password == passwordre:
             
-            if User.objects.filter(email=email).exists():
-                messages.info(request, "Email Already Used")
-                return redirect('signup')
-            elif User.objects.filter(username = username).exists():
-                messages.info(request, "Username Already Used")
-                return redirect('signup')
-            else:
-                user = User.objects.create_user(username=username, email=email, password=password)
-                user.save()
-                return redirect('login')
-        else: 
-            messages.info(request, "passwords does not match")
-            return redirect('register')
-    else:
-        return render(request, 'signup.html')
-    
+                if User.objects.filter(email=email).exists():
+                    messages.info(request, "Email Already Used")
+                    return redirect('signup')
+                elif User.objects.filter(username = username).exists():
+                    messages.info(request, "Username Already Used")
+                    return redirect('signup')
+                else:
+                    user = User.objects.create_user(username=username, email=email, password=password)
+                    user.save()
+                    return redirect('login')
+            else: 
+                messages.info(request, "passwords does not match")
+                return redirect('register')
+        else:
+            return render(request, 'signup.html')
+    except:
+        messages.info(request, "please provide needed infromation")
+        return redirect('signup')
 #function for login
 
 def login(request): 
