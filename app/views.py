@@ -112,14 +112,21 @@ def login(request):
         username = request.POST['username']
         password = request.POST['password']
         
-        
+        # Check if the username exists
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            messages.info(request, 'Username is incorrect')
+            return redirect('login')
+
+        # Check if the password is correct for the given username
         user = auth.authenticate(username=username, password=password)
         
         if user is not None:
             auth.login(request, user)
-            return redirect ('/')
+            return redirect('/')
         else:
-            messages.info(request, 'Credentials Invalid')
+            messages.info(request, 'Password is incorrect')
             return redirect('login')
     else:
         return render(request, 'login.html')
