@@ -105,12 +105,18 @@ def register(request):
         return redirect('login')
     else:
         return render(request, 'signup.html')
+    
 #function for login
 
 def login(request): 
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        
+        # Check if both username and password are empty
+        if not username and not password:
+            messages.info(request, 'Please provide a username and password')
+            return redirect('login')
         
         # Check if the username exists
         try:
@@ -130,9 +136,13 @@ def login(request):
             return redirect('login')
     else:
         return render(request, 'login.html')
-    
 # function for logout
 
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+
+
+
+#mrnone wrote this 
