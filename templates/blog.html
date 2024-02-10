@@ -106,17 +106,17 @@
             </a>
           </li>
 
-                     <!-- {% if user.is_authenticated %} -->
+        {% if user.is_authenticated %}
         
         <a id="xmyBtn" style="text-decoration: none;" href="#" class="f-header__link f-header__link--icon" aria-label="login">
           <svg class="icon"><i id="x" class="nav fa fa fa-sign-in">&nbsp;logout</i></svg>
-        <!-- {% else %} -->
+        {% else %}
         </a>
 
       
         <a id="xmyBtn" style="text-decoration: none;" href="#" class="f-header__link f-header__link--icon" aria-label="login">
           <svg class="icon"><i id="x" class="nav fa fa fa-sign-in">&nbsp;login</i></svg>
-        <!-- {% endif%} -->
+        {% endif%}
         </a>
         </ul>
 
