@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-from django.shortcuts import render
 from django.contrib.auth import authenticate, login as auth_login
 import re
 # Create your views here.
@@ -135,11 +134,6 @@ def login(request):
             except User.DoesNotExist:
                 messages.info(request, 'Username is incorrect')
                 return redirect('login')
-            '''try:
-                user = User.objects.get(username=username)
-            except User.DoesNotExist:
-                messages.info(request, 'Username is incorrect')
-                return redirect('login')'''
 
             # Check if the password meets certain criteria (e.g., length)
             if len(password) < 6:

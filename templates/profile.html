@@ -117,7 +117,7 @@
           </a>
   
         
-          <a id="xmyBtn" style="text-decoration: none;" href="logins" class="f-header__link f-header__link--icon" aria-label="login">
+          <a id="xmyBtn" style="text-decoration: none;" href="login" class="f-header__link f-header__link--icon" aria-label="login">
             <svg class="icon"><i id="x" class="nav fa fa fa-sign-in">&nbsp;login</i></svg>
           {% endif%}
           </a>
@@ -142,9 +142,9 @@
         MENU
       </div>
       <span></span>
-      <div style="color: white;" class="job">
-        Admin / User
-      </div>
+      {% if user.is_authenticated %}
+        <p>User: {{ user.username }}</p>
+      {% endif %}
     </div>
 
     <div class="sidenav-url">
