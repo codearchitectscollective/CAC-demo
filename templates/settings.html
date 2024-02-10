@@ -172,7 +172,7 @@
     </div>
   </div>
   <!-- End -->
-
+{% if user.is_authenticated %}
   <!-- Main -->
   <div class="main">
     <h2 style="color: white;">Settings</h2>
@@ -205,6 +205,15 @@
     </div>
   </div>
   <!-- End -->
+  {% else %}
+  <a href="forgetpass" class="animated-button">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    login to continue
+  </a>
+  {% endif%}
 </body>
 <script>
   // Get the modal
