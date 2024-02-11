@@ -3,10 +3,17 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
 import re
+import logging
 from .models import Post
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.forms import AuthenticationForm
+from django.core.cache import cache
+from django.conf import settings
+from CAC.settings import LOGIN_ATTEMPTS_LIMIT
 
-# Create your views here.
+
+
+
 def index(request):
     return render(request, 'index.html')
 def projects(request):
@@ -132,45 +139,49 @@ def register(request):
     
 #function for login
 
-def login(request): 
+limit = LOGIN_ATTEMPTS_LIMIT
+logger = logging.getLogger(__name__)
+
+def login(request):
     try:
         if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
+            # Rate limiting and logging
+            ip_address = request.META.get('REMOTE_ADDR')
+            login_attempts_key = f'login_attempts_{ip_address}'
+            login_attempts = cache.get(login_attempts_key, 0)
             
-            # Check if both username and password are provided
-            if not username or not password:
-                messages.info(request, 'Please provide both username and password')
-                return redirect('login')
-            
-            # Check if the username exists
-            try:
-                user = User.objects.get(username=username)
-            except User.DoesNotExist:
-                messages.info(request, 'Username is incorrect')
+            logger.info(f'Login attempt from IP: {ip_address}, Username: {request.POST.get("username")}')
+
+            if login_attempts >= LOGIN_ATTEMPTS_LIMIT:
+                messages.error(request, 'Too many login attempts. Please try again later.')
                 return redirect('login')
 
-            # Check if the password meets certain criteria (e.g., length)
-            if len(password) < 6:
-                messages.info(request, 'Password must be at least 6 characters long')
-                return redirect('login')
+            form = AuthenticationForm(request, request.POST)
+            if form.is_valid():
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password']
 
-            # Authenticate user
-            user = authenticate(username=username, password=password)
-            
-            if user is not None:
-                auth_login(request, user)
-                return redirect('/')
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    auth_login(request, user)
+                    # Reset login attempts on successful login
+                    cache.delete(login_attempts_key)
+                    logger.info(f'Successful login for user: {username}, IP: {ip_address}')
+                    return redirect('/')
+                else:
+                    messages.error(request, 'Invalid username or password')
             else:
-                messages.info(request, 'Password is incorrect')
-                return redirect('login')
+                messages.error(request, 'Invalid username or password')
+
+            # Increment login attempts
+            cache.set(login_attempts_key, login_attempts + 1, timeout=settings.LOGIN_ATTEMPTS_TIMEOUT)
         else:
-            return render(request, 'login.html')
+            form = AuthenticationForm()
+        return render(request, 'login.html', {'form': form})
     except Exception as e:
-        messages.error(request, f'An error occurred: {str(e)}')
+        logger.error(f'An error occurred: {str(e)}')
+        messages.error(request, 'An unexpected error occurred. Please try again later.')
         return redirect('login')
-            
-            
 
         
 
