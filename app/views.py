@@ -3,6 +3,9 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
 import re
+from .models import post
+
+
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -38,8 +41,11 @@ def login(request):
     return render(request, 'login.html')
 def forgetpass(request): 
     return render(request, 'forgetpass.html')
-def blogmenu(request): 
-    return render(request, 'blogmenu.html')
+def blogmenu(request):
+    context = {
+        'posts' : post.objects.all()
+    } 
+    return render(request, 'blogmenu.html', context)
 def verification(request): 
     return render(request, 'verification.html')
 def notepad(request): 
