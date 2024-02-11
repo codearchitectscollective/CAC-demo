@@ -9,10 +9,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.cache import cache
 from django.conf import settings
-from CAC.settings import LOGIN_ATTEMPTS_LIMIT
-
-
-
+from CAC.settings import LOGIN_ATTEMPTS_LIMIT, LOGIN_ATTEMPTS_TIMEOUT
 
 def index(request):
     return render(request, 'index.html')
@@ -137,8 +134,8 @@ def register(request):
         messages.info(request, f"An error occurred: {e}")
         return redirect('signup')
     
-#function for login
-
+#function for login\
+    
 limit = LOGIN_ATTEMPTS_LIMIT
 logger = logging.getLogger(__name__)
 
@@ -174,7 +171,7 @@ def login(request):
                 messages.error(request, 'Invalid username or password')
 
             # Increment login attempts
-            cache.set(login_attempts_key, login_attempts + 1, timeout=settings.LOGIN_ATTEMPTS_TIMEOUT)
+            cache.set(login_attempts_key, login_attempts + 1, timeout= LOGIN_ATTEMPTS_TIMEOUT)
         else:
             form = AuthenticationForm()
         return render(request, 'login.html', {'form': form})

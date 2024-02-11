@@ -24,6 +24,7 @@ SECRET_KEY = 'django-insecure-@epey2t&19l)o)@l+bu$*1$&$ef9b(1+6mxr%(&24=9iyiu+ft
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+LOGIN_ATTEMPTS_TIMEOUT = 900
 LOGIN_ATTEMPTS_LIMIT = 5
 ALLOWED_HOSTS = []
 
