@@ -180,8 +180,6 @@ def login(request):
         messages.error(request, 'An unexpected error occurred. Please try again later.')
         return redirect('login')
 
-        
-
 def logout(request):
     auth.logout(request)
     return redirect('/')

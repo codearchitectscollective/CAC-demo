@@ -36,6 +36,6 @@ urlpatterns = [
     path('settings', views.settings, name='settings'),
     path('tools', views.tools, name='tools'),
     path('logout', views.logout, name='logout'),
-     path('blog/<int:post_id>/', views.post_detail_view, name='blog'),
+    path('blog/<int:post_id>/', views.post_detail_view, name='blog'),
 
 ]
