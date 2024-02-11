@@ -86,15 +86,25 @@ def register(request):
             email = request.POST.get('email')
             password = request.POST.get('password')
             passwordre = request.POST.get('passwordre')
-        
+            
             # Check if any of the fields are empty
             if not (username and email and password and passwordre):
                 messages.info(request, "Please provide all needed information.")
                 return redirect('signup')
-        
+            
+            # Validate email format
+            if not re.match(r'^[\w\.-]+@[\w\.-]+$', email):
+                messages.info(request, "Please provide a valid email address.")
+                return redirect('signup')
+
             # Check password length
             if len(password) < 6 or len(passwordre) < 6:
                 messages.info(request, "Your password must be at least 6 characters.")
+                return redirect('signup')
+            
+            # Check password complexity
+            if not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$', password):
+                messages.info(request, "Your password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.")
                 return redirect('signup')
             
             # Check if passwords match
@@ -102,19 +112,14 @@ def register(request):
                 messages.info(request, "Passwords do not match.")
                 return redirect('signup')
             
-            # Check for symbols and capital letters in the password
-            if not re.search(r'(?=.*[A-Z])(?=.*[!@#$%^&*()_+=\-{}[\]:;"\'<>,.?\\/])', password):
-                messages.info(request, "Your password must contain at least one capital letter and one symbol.")
-                return redirect('signup')
-        
             # Check for existing email and username
             if User.objects.filter(email=email).exists():
-                messages.info(request, "Email Already Used")
+                messages.info(request, "Email already in use.")
                 return redirect('signup')
             elif User.objects.filter(username=username).exists():
-                messages.info(request, "Username Already Used")
+                messages.info(request, "Username already in use.")
                 return redirect('signup')
-
+            
             # Create user
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
