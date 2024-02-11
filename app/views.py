@@ -152,7 +152,7 @@ def login(request):
             
             logger.info(f'Login attempt from IP: {ip_address}, Username: {request.POST.get("username")}')
 
-            if login_attempts >= LOGIN_ATTEMPTS_LIMIT:
+            if login_attempts >= limit:
                 messages.error(request, 'Too many login attempts. Please try again later.')
                 return redirect('login')
 
@@ -193,3 +193,4 @@ def logout(request):
 
 
 #mrnone wrote this 
+#django be acting like a miaatch 
