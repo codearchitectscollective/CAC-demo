@@ -30,9 +30,9 @@ class Trending(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='static/post_images/', blank=True, null=True)
-    image1 = models.ImageField(upload_to='static/post_images/', blank=True, null=True)
-    image2 = models.ImageField(upload_to='static/post_images/', blank=True, null=True)
+    image = models.ImageField(upload_to='static/trending_images/', blank=True, null=True)
+    image1 = models.ImageField(upload_to='static/trending_images/', blank=True, null=True)
+    image2 = models.ImageField(upload_to='static/trending_images/', blank=True, null=True)
     
     def __str__(self):
         return self.title
@@ -42,9 +42,9 @@ class Featured(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='static/post_images/', blank=True, null=True)
-    image1 = models.ImageField(upload_to='static/post_images/', blank=True, null=True)
-    image2 = models.ImageField(upload_to='static/post_images/', blank=True, null=True)
+    image = models.ImageField(upload_to='static/featured_images/', blank=True, null=True)
+    image1 = models.ImageField(upload_to='static/featured_images/', blank=True, null=True)
+    image2 = models.ImageField(upload_to='static/featured_images/', blank=True, null=True)
     
     def __str__(self):
         return self.title
@@ -54,9 +54,9 @@ class News(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='static/post_images/', blank=True, null=True)
-    image1 = models.ImageField(upload_to='static/post_images/', blank=True, null=True)
-    image2 = models.ImageField(upload_to='static/post_images/', blank=True, null=True)
+    image = models.ImageField(upload_to='static/news_images/', blank=True, null=True)
+    image1 = models.ImageField(upload_to='static/news_images/', blank=True, null=True)
+    image2 = models.ImageField(upload_to='static/news_images/', blank=True, null=True)
     
     def __str__(self):
         return self.title
