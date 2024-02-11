@@ -3,8 +3,8 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
 import re
-from .models import post
-
+from .models import Post
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 def index(request):
@@ -43,7 +43,7 @@ def forgetpass(request):
     return render(request, 'forgetpass.html')
 def blogmenu(request):
     context = {
-        'posts' : post.objects.all()
+        'posts' : Post.objects.all()
     } 
     return render(request, 'blogmenu.html', context)
 def verification(request): 
@@ -72,6 +72,10 @@ def settings(request):
     return render(request, 'settings.html')
 def home(request):
     return redirect('/')
+
+def post_detail_view(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    return render(request, 'blog.html', {'post': post})
 
 #function for register 
 

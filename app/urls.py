@@ -35,5 +35,7 @@ urlpatterns = [
     path('calculator', views.calculator, name='calculator'),
     path('settings', views.settings, name='settings'),
     path('tools', views.tools, name='tools'),
-    path('logout', views.logout, name='logout')
+    path('logout', views.logout, name='logout'),
+     path('blog/<int:post_id>/', views.post_detail_view, name='blog'),
+
 ]
