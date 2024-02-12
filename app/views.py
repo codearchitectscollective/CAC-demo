@@ -93,7 +93,11 @@ def arcadegames(request):
 
 @login_required()
 def profile(request): 
-    profile = Profile.objects.get(user=request.user)
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        # If Profile doesn't exist, create a new one
+        profile = Profile.objects.create(user=request.user, bio='', image='')  # Adjust bio and image as needed
     return render(request, 'profile.html', {'profile': profile})
 
 @login_required()
