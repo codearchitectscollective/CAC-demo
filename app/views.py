@@ -191,7 +191,11 @@ logger = logging.getLogger(__name__)
 
 def login(request):
     try:
-        next_url = request.GET.get('next', '/')  # Default to home page if 'next' parameter is not provided important
+        next_url = request.GET.get('next', '/')  # Default to home page if 'next' parameter is not provided
+        
+        # If user is already authenticated, redirect to profile page
+        if request.user.is_authenticated:
+            return redirect('profile')
 
         if request.method == 'POST':
             ip_address = request.META.get('REMOTE_ADDR')
@@ -238,7 +242,6 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    messages.success(request, 'You have successfully logged out.')
     return redirect('/')
 
 
