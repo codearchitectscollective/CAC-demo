@@ -46,7 +46,12 @@ def snake(request):
 
 @login_required()
 def password(request): 
-    return render(request, 'password.html')
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        # If Profile doesn't exist, create a new one it is used for admin and I am him so wasup?
+        profile = Profile.objects.create(user=request.user, bio='', image='')  # Adjust bio and image as needed
+    return render(request, 'password.html', {'profile': profile})
 
 def pong(request): 
     return render(request, 'pong.html')
@@ -111,7 +116,13 @@ def resetpassword(request):
 
 @login_required()
 def tools(request): 
-    return render(request, 'tools.html')
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        # If Profile doesn't exist, create a new one it is used for admin and I am him so wasup?
+        profile = Profile.objects.create(user=request.user, bio='', image='')  # Adjust bio and image as needed
+    return render(request, 'tools.html', {'profile': profile})
+
 
 @login_required()
 def passwordgenerator(request): 
@@ -119,7 +130,12 @@ def passwordgenerator(request):
 
 @login_required()
 def settings(request): 
-    return render(request, 'settings.html')
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        # If Profile doesn't exist, create a new one it is used for admin and I am him so wasup?
+        profile = Profile.objects.create(user=request.user, bio='', image='')  # Adjust bio and image as needed
+    return render(request, 'settings.html', {'profile': profile})
 
 def home(request):
     return redirect('/')
