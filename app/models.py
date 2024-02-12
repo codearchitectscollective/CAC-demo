@@ -20,7 +20,7 @@ class Post(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='static/post_images/', blank=True, null=True)
+    image = models.ImageField(upload_to='post_images/', blank=True, null=True)
     
     def __str__(self):
         return self.title
@@ -30,9 +30,9 @@ class Trending(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='static/trending_images/', blank=True, null=True)
-    image1 = models.ImageField(upload_to='static/trending_images/', blank=True, null=True)
-    image2 = models.ImageField(upload_to='static/trending_images/', blank=True, null=True)
+    image = models.ImageField(upload_to='trending_images/', blank=True, null=True)
+    image1 = models.ImageField(upload_to='trending_images/', blank=True, null=True)
+    image2 = models.ImageField(upload_to='trending_images/', blank=True, null=True)
     
     def __str__(self):
         return self.title
@@ -42,9 +42,9 @@ class Featured(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='static/featured_images/', blank=True, null=True)
-    image1 = models.ImageField(upload_to='static/featured_images/', blank=True, null=True)
-    image2 = models.ImageField(upload_to='static/featured_images/', blank=True, null=True)
+    image = models.ImageField(upload_to='featured_images/', blank=True, null=True)
+    image1 = models.ImageField(upload_to='featured_images/', blank=True, null=True)
+    image2 = models.ImageField(upload_to='featured_images/', blank=True, null=True)
     
     def __str__(self):
         return self.title
@@ -54,18 +54,19 @@ class News(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='static/news_images/', blank=True, null=True)
-    image1 = models.ImageField(upload_to='static/news_images/', blank=True, null=True)
-    image2 = models.ImageField(upload_to='static/news_images/', blank=True, null=True)
+    image = models.ImageField(upload_to='news_images/', blank=True, null=True)
+    image1 = models.ImageField(upload_to='news_images/', blank=True, null=True)
+    image2 = models.ImageField(upload_to='news_images/', blank=True, null=True)
     
     def __str__(self):
         return self.title
     
     
-class profile(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(max_length=500)
-    image = models.ImageField(default='default.jpg', upload_to='static/User_Profile_images/')
+    image = models.ImageField(default='default.jpg', upload_to='User_Profile_images/')
     
     def __str__(self):
         return f'{self.user.username} Profile' 
+    

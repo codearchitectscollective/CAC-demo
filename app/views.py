@@ -12,6 +12,7 @@ from django.conf import settings
 from CAC.settings import LOGIN_ATTEMPTS_LIMIT, LOGIN_ATTEMPTS_TIMEOUT
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from .models import Profile
 
 def index(request):
     return render(request, 'index.html')
@@ -92,7 +93,8 @@ def arcadegames(request):
 
 @login_required()
 def profile(request): 
-    return render(request, 'profile.html')
+    profile = Profile.objects.get(user=request.user)
+    return render(request, 'profile.html', {'profile': profile})
 
 @login_required()
 def camera(request): 
