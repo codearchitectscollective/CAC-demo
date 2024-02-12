@@ -192,6 +192,7 @@ logger = logging.getLogger(__name__)
 def login(request):
     try:
         next_url = request.GET.get('next', '/')  # Default to home page if 'next' parameter is not provided
+
         if request.method == 'POST':
             ip_address = request.META.get('REMOTE_ADDR')
             login_attempts_key = f'login_attempts_{ip_address}'
@@ -213,14 +214,14 @@ def login(request):
                     auth_login(request, user)
                     cache.delete(login_attempts_key)
                     logger.info(f'Successful login for user: {username}, IP: {ip_address}')
-                    
+
                     messages.success(request, 'You have successfully logged in.')
                     
                     next_url = request.POST.get('next')
                     if next_url:
                         return redirect(next_url)
                     else:
-                        return redirect('/')   # Redirect to the home page if no next URL
+                        return redirect('profile')   # Redirect to the profile page if no next URL
                 else:
                     messages.error(request, 'Invalid username or password')
             else:
@@ -237,6 +238,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
+    messages.success(request, 'You have successfully logged out.')
     return redirect('/')
 
 
