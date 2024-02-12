@@ -26,9 +26,6 @@ def blog(request):
 def contact(request): 
     return render(request, 'contact.html')
 
-def projects(request): 
-    return render(request, 'projects.html')
-
 def purchase(request):
     return render(request, 'purchase.html')
 
@@ -96,7 +93,7 @@ def profile(request):
     try:
         profile = Profile.objects.get(user=request.user)
     except Profile.DoesNotExist:
-        # If Profile doesn't exist, create a new one
+        # If Profile doesn't exist, create a new one it is used for admin and I am him so wasup?
         profile = Profile.objects.create(user=request.user, bio='', image='')  # Adjust bio and image as needed
     return render(request, 'profile.html', {'profile': profile})
 
