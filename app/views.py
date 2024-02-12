@@ -107,7 +107,12 @@ def register(request):
                 return redirect('signup')
             
             # Check password complexity
-            if not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$', password):
+            if not (
+                re.search("[a-z]", password) and
+                re.search("[A-Z]", password) and
+                re.search("\d", password) and
+                re.search("[$@!%*?&]", password)
+                ):
                 messages.info(request, "Your password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.")
                 return redirect('signup')
             
@@ -127,6 +132,7 @@ def register(request):
             # Create user
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
+            messages.success(request, f"Account Created for {user}")
             return redirect('login')
         else:
             return render(request, 'signup.html')
@@ -164,6 +170,8 @@ def login(request):
                     # Reset login attempts on successful login
                     cache.delete(login_attempts_key)
                     logger.info(f'Successful login for user: {username}, IP: {ip_address}')
+                    
+                    messages.success(request, 'You have successfully logged in.')
                     return redirect('/')
                 else:
                     messages.error(request, 'Invalid username or password')

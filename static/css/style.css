@@ -58,6 +58,10 @@ body {
   font-family: 'IRANSans';
 }
 
+.fade-out {
+  opacity: 0; /* Set the initial opacity to 0 */
+  transition: opacity 1s ease-out; /* Apply a transition effect */
+}
 .container {
   width: calc(100% - 2*var(--component-padding));
   margin-left: auto;
