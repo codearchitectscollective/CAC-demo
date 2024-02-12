@@ -191,7 +191,7 @@ logger = logging.getLogger(__name__)
 
 def login(request):
     try:
-        next_url = request.GET.get('next', '/')  # Default to home page if 'next' parameter is not provided
+        next_url = request.GET.get('next', '/')  # Default to home page if 'next' parameter is not provided important
 
         if request.method == 'POST':
             ip_address = request.META.get('REMOTE_ADDR')
