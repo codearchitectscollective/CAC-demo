@@ -9,3 +9,4 @@ admin.site.register(Post)
 admin.site.register(News)
 admin.site.register(Featured)
 admin.site.register(Trending)
+
