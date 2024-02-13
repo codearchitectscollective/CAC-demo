@@ -14,6 +14,8 @@ def contact(request):
     return render(request, 'contact.html')
 def projects(request): 
     return render(request, 'projects.html')
+def colorpicker(request): 
+    return render(request, 'colorpicker.html')
 def purchase(request):
     return render(request, 'purchase.html')
 def timeline(request): 
