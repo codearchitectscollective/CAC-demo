@@ -28,10 +28,21 @@
       <!--don't touch the names of the elements Bitch-->
         <form method = "POST" action = "login" id="rezform" class="rezform">
           {% csrf_token %}
+          
           <div class="text-component text-center margin-bottom-xl">
             <a href="home" class="close" title="Close Modal">&times;</a>
             <h1>Log In To Your Account</h1>
+            {% if messages %}
+            {% for message in messages %}
+            {% if 'succes' in message.tags %}
+            <div class="alert alert{{message.tags}}" role="alert">
+              {{ message }}
+            </div>
+            {% endif%}
+            {% endfor %}
+            {% endif %}
             <p class="color-contrast-medium">
+
               If you haven't created an account yet <a href="signup" style="text-decoration: none;">Signup</a> now.
             </p>          </div>
           <!-- <legend style="text-align: center;" class="form-legend">Sign Up</legend> -->
@@ -39,6 +50,7 @@
           <div class="rezform-control">
             <label for="username">Username</label>
             <input type="text" name="username" id="rezemail" placeholder="Enter Username">
+            <input type="hidden" name="next" value="{{ next }}">
             <!-- {% for message in messages %} -->
             <!-- <small class="padding-xxs radius-md text-xs color-contrast-higher margin-top-xxs">{{message}}</small> -->
             <!-- {% endfor %} -->
@@ -48,7 +60,11 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="rezpassword" placeholder="Enter password">
             {% for message in messages %}
+            {% if 'error' in message.tags %}
             <p class="padding-xxs radius-md text-xs color-contrast-higher margin-top-xxs">{{message}}</p>
+            {% elif 'info' in message.tags%}
+            <p class="padding-xxs radius-md text-xs color-contrast-higher margin-top-xxs">{{message}}</p>
+            {% endif %}
             {% endfor %}
           </div>
 
@@ -56,8 +72,9 @@
             <label for="checkbox-2">Forgot your password? <a style="text-decoration: none;" href="forgetpass">Reset</a></label>
           </fieldset> 
           
-          <button style="width: 100%;" class="bttn-dark bzbz btn btn--primary">Login</button>
+          <button style="width: 100%;" class="bttn-dark bzbz btn btn--primary" type="submit">Login</button>
         </form>
+      
       
     </div>
     <figure class="bg-decoration z-index-1" aria-hidden="true">
@@ -380,8 +397,5 @@
       });
   </script> -->
 
-  <script src="{% static "js/scripts.js"%}"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initGoogleMap"></script>
-</body>
 
 </html>

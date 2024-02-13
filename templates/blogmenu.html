@@ -24,7 +24,6 @@
 
 <div id="loader"></div>
 <div style="display:none;" id="myDiv" class="animate-bottom">
-
   <section class="sliderx_container">
     <section class="sliderx">
       <div class="slidex one">
@@ -177,22 +176,27 @@
         <div class="w-full md:w-2/3 mb-4 lg:mb-0">
           <div class="md:mx-4">
             <h2 class="border-b-2 border-red-600 mb-4"><span class="bg-red-600 px-2 py-1 text-white uppercase tracking-wide">Latest</span></h2>
+            {% for Post in posts%}
 
             <div class="flex flex-wrap items-center md:-mx-2">
               <div class="w-full md:w-3/12">
                 <div class="md:mx-2">
-                  <img src="{% static "img/Rstarlogo.jpg"%}" class="w-full mb-4 md:mb-0">
-                </div>
+                  <img src="{{ Post.image.url }}" class="w-full mb-4 md:mb-0">
               </div>
+              </div>
+
+              
+
               <div class="md:w-9/12">
                 <div class="md:mx-2">
-                  <h2 class="text-white font-bold text-2xl pb-4 leading-tight"><a href="blog" class="text-white hover:underline">Rockstar Games, Inc. American video game publisher</a></h2>
-                  <p class="text-gray-400 pb-2">New Wildlife Photography Challenge and Declasse Park Ranger on PS5 and Xbox Series X|S</p>
-                  <div class="text-gray-200 inline-block py-1 italic text-sm">Posted on: <time datetime="2021-11-19 20:00">November 19, 2024</time> by <a href="#" class="underline hover:no-underline">Nikolas Tesla</a></div>
+                  <h2 class="text-white font-bold text-2xl pb-4 leading-tight"><a href="{% url 'blog' post_id=Post.id %}" class="text-white hover:underline">{{Post.title}}</a></h2>
+                  <p class="text-gray-400 pb-2">{{Post.content|truncatewords:30}}</p>
+                  <div class="text-gray-200 inline-block py-1 italic text-sm">Posted on: <time datetime="2021-11-19 20:00">{{Post.date_posted|date:"F d, Y"}}</time> by <a href="#" class="underline hover:no-underline">{{Post.author}}</a></div>
                 </div>
               </div>
               <div class="w-full mb-5 pb-5 border-b border-gray-700 md:mx-2"></div>
             </div>
+              {% endfor %}
 
             <div class="flex flex-wrap items-center md:-mx-2">
               <div class="w-full md:w-3/12">
