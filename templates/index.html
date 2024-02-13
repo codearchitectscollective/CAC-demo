@@ -22,12 +22,8 @@
 </head>
 
 
-       
-      </div>
-    </div>
-              
-  </header>
-
+  <div id="loader"></div>
+  <div style="display:none;" id="myDiv" class="animate-bottom">
   <div style="background-color: rgb(27, 35, 40)">
     <section class="diagonal-section-bottom bg-contrast-lower bg-opacity-50%" style="background-image: 
     url('{% static "img/wallpaperx5.jpg"%}');" data-theme="dark">
@@ -282,7 +278,7 @@
   </section>
 
   <!-- newsletter -->
-  <section class="newsletter padding-y-xxl text-center" data-theme="soft">
+  <div class="newsletter padding-y-xxl text-center" data-theme="soft">
     <div class="container max-width-xs position-relative z-index-2">
       <div class="text-component margin-bottom-md">
         <h2>Join <em>our</em> Newsletter</h2>
@@ -432,6 +428,7 @@
       crossorigin="anonymous"></script>
     <script src="{% static "js/scripts.js"%}"></script>
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+  </div>
 </body>
 
 <!-- // scroll to top button -->

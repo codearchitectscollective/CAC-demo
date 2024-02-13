@@ -19,7 +19,9 @@
   <link rel="icon" type="image" href="{% static "img/titleicon.png"%}">
   <link rel="stylesheet" href="{% static "css/style.css"%}">
   
-
+</head>
+<div id="loader"></div>
+<div style="display:none;" id="myDiv" class="animate-bottom">
   <!-- articles -->
   <section class="articles-v3 padding-top-xl margin-bottom-lg">
     <div class="container max-width-adaptive-lg">
@@ -254,6 +256,7 @@
         </div>
       </div>
     </footer>
+  </div>
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
     <script src="{% static "js/scripts.js"%}"></script>

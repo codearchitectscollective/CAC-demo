@@ -13,6 +13,7 @@ urlpatterns = [
     path('arcade', views.arcade, name="arcade"),
     path('tetris', views.tetris, name="tetris"),
     path('snake', views.snake, name="snake"),
+    path('colorpicker', views.colorpicker, name="colorpicker"),
     path('pong', views.pong, name="pong"),
     path('signup', views.signup, name="signup"),
     path('payment', views.payment, name="payment"),

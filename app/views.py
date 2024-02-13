@@ -16,16 +16,16 @@ from .models import Profile
 
 def index(request):
     return render(request, 'index.html')
-
 def projects(request):
     return render(request, 'projects.html')
-
 def blog(request): 
     return render(request, 'blog.html')
-
 def contact(request): 
     return render(request, 'contact.html')
-
+def projects(request): 
+    return render(request, 'projects.html')
+def colorpicker(request): 
+    return render(request, 'colorpicker.html')
 def purchase(request):
     return render(request, 'purchase.html')
 

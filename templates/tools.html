@@ -43,7 +43,7 @@
       </div>
       <span></span>
       {% if user.is_authenticated %}
-        <p>User:  {{ user.username }}</p>
+        <p style="color: white;" class="name">User:  {{ user.username }}</p>
       {% endif %}
     </div>
 
@@ -99,18 +99,6 @@
         </div>
       </a>
 
-      <a href="notepad" class="col-lg-4 col-sm-4 col-md-4 col-xl-4 col-xs-12">
-        <div class="card notepad-border-color">
-          <div class="card-body">
-            <h4 class="card-title">NOTEPAD</h4>
-            <div class="card-image" style="color: rgb(219, 0, 219);">
-              <i class="fas fa-file-text fa-5x"></i>
-            </div>
-            <p class="card-text ">Write And Custumise Your Notes Using CAC Notepad.</p>
-          </div>
-        </div>
-      </a>
-
       <a href="internetspeedtest" class="col-lg-4 col-sm-4 col-md-4 col-xl-4 col-xs-12">
         <div class="card internetspeedtest-border-color">
           <div class="card-body">
@@ -142,7 +130,19 @@
             <div class="card-image" style="color:  yellow;">
               <i class="fas fa-calculator fa-5x"></i>
             </div>
-            <p class="card-text ">Solve Your Equations And Formulas Using CAC Ip Finder .</p>
+            <p class="card-text ">Solve Your Equations And Formulas Using CAC Ip Finder.</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="notepad" class="col-lg-4 col-sm-4 col-md-4 col-xl-4 col-xs-12">
+        <div class="card notepad-border-color">
+          <div class="card-body">
+            <h4 class="card-title">NOTEPAD</h4>
+            <div class="card-image" style="color: white;">
+              <i class="fas fa-file-text fa-5x"></i>
+            </div>
+            <p class="card-text ">Write And Custumise Your Notes Using CAC Notepad.</p>
           </div>
         </div>
       </a>
@@ -154,12 +154,24 @@
             <div class="card-image" style="color: orangered;">
               <i class="fas fa-podcast fa-5x"></i>
             </div>
-            <p class="card-text ">Lookup Your Current Ip Address Using CAC Ip Finder .</p>
+            <p class="card-text ">Lookup Your Current Ip Address Using CAC Ip Finder.</p>
           </div>
         </div>
       </a>
 
+      <a href="colorpicker" class="col-lg-4 col-sm-4 col-md-4 col-xl-4 col-xs-12">
+        <div class="card colorpicker-border-color">
+          <div class="card-body">
+            <h4 class="card-title">COLOR PICKER</h4>
+            <div class="card-image" style="color: rgb(219, 0, 219);">
+              <i class="fas fa-palette fa-5x"></i>
+            </div>
+            <p class="card-text ">Pick any color and get it's code Using CAC color picker.</p>
+          </div>
+        </div>
+      </a>
 
+      <i class="fa-solid fa-eye-dropper"></i>
   </div>
 </div>
   <!-- End -->
@@ -500,7 +512,7 @@ border-style: solid;
   border-color: red;
 }
 .notepad-border-color:hover {
-  border-color: rgb(219, 0, 219);
+  border-color: white;
 }
 .internetspeedtest-border-color:hover {
   border-color: royalblue;
@@ -513,6 +525,9 @@ border-style: solid;
 }
 .myip-border-color:hover {
   border-color: orangered;
+}
+.colorpicker-border-color:hover {
+  border-color: rgb(219, 0, 219);
 }
 .card-title {
 text-align: center;
